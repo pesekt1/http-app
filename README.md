@@ -3,9 +3,9 @@
 Create a new app: create-react-app
 install dependencies:
 
-npm install bootstrap
+yarn add bootstrap
 
-npm install axios
+yarn add axios
 
 use bootstrap: in index.js:
 ```javascript
