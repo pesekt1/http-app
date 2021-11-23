@@ -4,19 +4,13 @@ import "./App.css";
 
 const apiEndpoint = "https://jsonplaceholder.typicode.com/posts";
 
-const config = {
-  headers: {
-    Referer: "https://http-app-react.herokuapp.com/",
-  },
-};
-
 class App extends Component {
   state = {
     posts: [],
   };
 
   async componentDidMount() {
-    const response = await axios.get(apiEndpoint, config);
+    const response = await axios.get(apiEndpoint);
     console.log(response);
     this.setState({ posts: response.data });
   }
@@ -24,9 +18,7 @@ class App extends Component {
   handleAdd = async () => {
     console.log("Add pressed");
     const obj = { title: "title", body: "body" };
-    const response = await axios.post(apiEndpoint, obj, {
-      referrerPolicy: "no-referrer-when-downgrade",
-    });
+    const response = await axios.post(apiEndpoint, obj);
     console.log(response);
     const posts = [response.data, ...this.state.posts];
     this.setState({ posts });
