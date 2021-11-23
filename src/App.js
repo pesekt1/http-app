@@ -10,13 +10,14 @@ class App extends Component {
   };
 
   async componentDidMount() {
+    console.log("component mounted");
     const response = await axios.get(apiEndpoint);
     console.log(response);
     this.setState({ posts: response.data });
   }
 
   handleAdd = async () => {
-    console.log("Add pressed");
+    console.log("Add pressed!");
     const obj = { title: "title", body: "body" };
     const response = await axios.post(apiEndpoint, obj);
     console.log(response);
