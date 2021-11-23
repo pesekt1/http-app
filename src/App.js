@@ -9,11 +9,14 @@ class App extends Component {
 
   async componentDidMount() {
     //pending > resolved (success) or rejected (failure)
-    const promise = axios.get("https://jsonplaceholder.typicode.com/posts");
-    console.log(promise); // see PromiseStatus and PromiseResult.data
+    //const promise = axios.get("https://jsonplaceholder.typicode.com/posts");
+    //console.log(promise); // see PromiseStatus and PromiseResult.data
 
-    const response = await promise;
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/posts"
+    );
     console.log(response);
+    this.setState({ posts: response.data });
   }
 
   handleAdd = () => {
