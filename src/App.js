@@ -48,7 +48,7 @@ class App extends Component {
     this.setState({ posts });
 
     try {
-      await httpService.delete("a" + config.apiEndpoint + "/" + post.id);
+      await httpService.delete(config.apiEndpoint + "/" + post.id);
     } catch (error) {
       console.log("HANDLE DELETE CATCH BLOCK");
 
