@@ -38,16 +38,20 @@ class App extends Component {
 
   handleDelete = async (post) => {
     const originalPosts = this.state.posts;
-    console.log("Delete", post);
 
     const posts = this.state.posts.filter((p) => p.id !== post.id);
     this.setState({ posts });
+    console.log(apiEndpoint + "/" + post.id);
 
     try {
       await axios.delete(apiEndpoint + "/" + post.id);
-      throw new Error("");
     } catch (error) {
-      alert("deleting a post failed.");
+      if (error.response && error.response.status === 404) {
+        alert("This post does not exist.");
+      } else {
+        console.log("Logging the error", error);
+        alert("An unexpected error occured while deleting the post.");
+      }
       this.setState({ posts: originalPosts });
     }
   };
