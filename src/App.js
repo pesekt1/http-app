@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import httpService from "./services/httpService";
+import config from "./config.json";
 
 import "./App.css";
-
-const apiEndpoint = "https://jsonplaceholder.typicode.com/posts";
 
 class App extends Component {
   state = {
@@ -12,7 +11,7 @@ class App extends Component {
 
   async componentDidMount() {
     console.log("component mounted");
-    const response = await httpService.get(apiEndpoint);
+    const response = await httpService.get(config.apiEndpoint);
     console.log(response);
     this.setState({ posts: response.data });
   }
@@ -20,7 +19,7 @@ class App extends Component {
   handleAdd = async () => {
     console.log("Add pressed!");
     const obj = { title: "title", body: "body" };
-    const response = await httpService.post(apiEndpoint, obj);
+    const response = await httpService.post(config.apiEndpoint, obj);
     console.log(response);
     const posts = [response.data, ...this.state.posts];
     this.setState({ posts });
@@ -29,7 +28,10 @@ class App extends Component {
   handleUpdate = async (post) => {
     post.title = "updated";
     console.log("Update", post);
-    const response = await httpService.put(apiEndpoint + "/" + post.id, post);
+    const response = await httpService.put(
+      config.apiEndpoint + "/" + post.id,
+      post
+    );
     console.log(response);
     const posts = [...this.state.posts];
     const index = posts.indexOf(post);
@@ -44,7 +46,7 @@ class App extends Component {
     this.setState({ posts });
 
     try {
-      await httpService.delete(apiEndpoint + "/" + post.id);
+      await httpService.delete(config.apiEndpoint + "/" + post.id);
     } catch (error) {
       console.log("HANDLE DELETE CATCH BLOCK");
 
