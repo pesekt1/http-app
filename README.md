@@ -8,6 +8,7 @@
 
 ## Axios - part 3
 
+Extracting the axios module:
 
 ```javascript
 

@@ -1,31 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
+import httpService from "./services/httpService";
+
 import "./App.css";
-
-// Add a response interceptor
-axios.interceptors.response.use(
-  function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-    return response;
-  },
-  function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    console.log("INTERCEPTOR CALLED");
-
-    const expectedError =
-      error.response &&
-      error.response.status >= 400 &&
-      error.response.status < 500;
-
-    if (!expectedError) {
-      console.log("Logging the error", error);
-      alert("unexpected error occured.");
-    }
-    return Promise.reject(error);
-  }
-);
 
 const apiEndpoint = "https://jsonplaceholder.typicode.com/posts";
 
@@ -36,7 +12,7 @@ class App extends Component {
 
   async componentDidMount() {
     console.log("component mounted");
-    const response = await axios.get(apiEndpoint);
+    const response = await httpService.get(apiEndpoint);
     console.log(response);
     this.setState({ posts: response.data });
   }
@@ -44,7 +20,7 @@ class App extends Component {
   handleAdd = async () => {
     console.log("Add pressed!");
     const obj = { title: "title", body: "body" };
-    const response = await axios.post(apiEndpoint, obj);
+    const response = await httpService.post(apiEndpoint, obj);
     console.log(response);
     const posts = [response.data, ...this.state.posts];
     this.setState({ posts });
@@ -53,7 +29,7 @@ class App extends Component {
   handleUpdate = async (post) => {
     post.title = "updated";
     console.log("Update", post);
-    const response = await axios.put(apiEndpoint + "/" + post.id, post);
+    const response = await httpService.put(apiEndpoint + "/" + post.id, post);
     console.log(response);
     const posts = [...this.state.posts];
     const index = posts.indexOf(post);
@@ -68,7 +44,7 @@ class App extends Component {
     this.setState({ posts });
 
     try {
-      await axios.delete(apiEndpoint + "/");
+      await httpService.delete(apiEndpoint + "/" + post.id);
     } catch (error) {
       console.log("HANDLE DELETE CATCH BLOCK");
 
