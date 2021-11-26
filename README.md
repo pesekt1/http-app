@@ -1,8 +1,6 @@
 # Simple react demo using axios library
 
-## Branches sequence:
-- start
-- axios-1
+## Axios - part 1:
 
 Check promise and response in the console:
 ```javascript
@@ -79,37 +77,3 @@ handleDelete = async (post) => {
   }
 };
 ```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-
-
-
-
-
