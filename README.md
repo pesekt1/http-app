@@ -21,7 +21,6 @@ Delete method: if error contains a response and the status is 404, the user is a
 ```javascript
   handleDelete = async (post) => {
     const originalPosts = this.state.posts;
-    console.log("Delete", post);
 
     const posts = this.state.posts.filter((p) => p.id !== post.id);
     this.setState({ posts });
@@ -49,6 +48,10 @@ Simulation of the unexpected error:
 ```javascript
 await axios.delete("a" + apiEndpoint + "/" + post.id);
 ```
+
+
+
+https://axios-http.com/docs/interceptors
 
 ```javascript
 
