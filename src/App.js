@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import httpService from "./services/httpService";
 import config from "./config.json";
+import { ToastContainer, toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 class App extends Component {
@@ -51,7 +53,7 @@ class App extends Component {
       console.log("HANDLE DELETE CATCH BLOCK");
 
       if (error.response && error.response.status === 404)
-        alert("This post does not exist.");
+        toast.error("This post does not exist.");
       this.setState({ posts: originalPosts });
     }
   };
@@ -59,6 +61,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <ToastContainer />
         <button className="btn btn-primary" onClick={this.handleAdd}>
           Add post
         </button>

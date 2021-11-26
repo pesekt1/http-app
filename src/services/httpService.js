@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 // Add a response interceptor
 axios.interceptors.response.use(
@@ -19,7 +20,7 @@ axios.interceptors.response.use(
 
     if (!expectedError) {
       console.log("Logging the error", error);
-      alert("unexpected error occured.");
+      toast.error("unexpected error occured.");
     }
     return Promise.reject(error);
   }
