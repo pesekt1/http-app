@@ -20,6 +20,7 @@ axios.interceptors.response.use(
       error.response.status < 500;
 
     if (!expectedError) {
+      console.log("Logging the error", error);
       alert("unexpected error occured.");
     }
     return Promise.reject(error);
@@ -67,16 +68,12 @@ class App extends Component {
     this.setState({ posts });
 
     try {
-      await axios.delete("a" + apiEndpoint + "/" + post.id);
+      await axios.delete(apiEndpoint + "/");
     } catch (error) {
       console.log("HANDLE DELETE CATCH BLOCK");
 
-      if (error.response && error.response.status === 404) {
+      if (error.response && error.response.status === 404)
         alert("This post does not exist.");
-      } else {
-        console.log("Logging the error", error);
-        alert("An unexpected error occured while deleting the post.");
-      }
       this.setState({ posts: originalPosts });
     }
   };
