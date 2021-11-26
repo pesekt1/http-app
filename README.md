@@ -1,10 +1,5 @@
 # Simple react demo using axios library
 
-## Branches sequence:
-- start
-- axios-1
-- axios-2
-
 ## Axios - part 2
 
 Expeced vs unexpected errors:
@@ -99,32 +94,3 @@ Test that the interceptor works globally - simulate an error in componentDidMoun
   async componentDidMount() {
     const response = await axios.get("a" + apiEndpoint);
 ```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-```javascript
-
-```
-
-
-
-
-
