@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import * as Sentry from "@sentry/browser";
 
 // Add a response interceptor
 axios.interceptors.response.use(
@@ -20,6 +21,7 @@ axios.interceptors.response.use(
 
     if (!expectedError) {
       console.log("Logging the error", error);
+      Sentry.captureException(error);
       toast.error("unexpected error occured.");
     }
     return Promise.reject(error);

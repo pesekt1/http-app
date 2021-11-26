@@ -106,6 +106,54 @@ if (!expectedError) {
   toast.error("unexpected error occured.");
 ```
 
+We can also use toast as a function:
+```javascript
+toast("unexpected error occured.");
+```
+
+### Logging errors
+For production we need to log the errors. We cannot use console.log()...
+
+Third-party logging service: https://sentry.io/
+
+Create an account, start a new project and follow the instructions...
+https://docs.sentry.io/platforms/javascript/
+
+install dependencies:
+
+- yarn add @sentry/react 
+- yarn add @sentry/tracing
+- yarn add @sentry/browser
+
+in index.js:
+```javascript
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
+
+Sentry.init({
+  dsn: "https://ab4b5d41ce82498687cfab8a4df4ee08@o345327.ingest.sentry.io/6082573",
+  integrations: [new Integrations.BrowserTracing()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
+```
+This will log the unhandled errors - like calling a non-existing function.
+
+
+Loggging the unexpected errors which we are handling by the axios interceptors: https://docs.sentry.io/platforms/javascript/usage/
+
+httpService:
+```javascript
+import * as Sentry from "@sentry/browser";
+...
+if (!expectedError) {
+  Sentry.captureException(error);
+```
+
+Extracting the logging service:
 ```javascript
 
 ```
@@ -118,3 +166,6 @@ if (!expectedError) {
 
 ```
 
+```javascript
+
+```
