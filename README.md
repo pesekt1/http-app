@@ -2,7 +2,7 @@
 
 ## Branches sequence:
 - start
-- axios
+- axios-1
 
 Check promise and response in the console:
 ```javascript
