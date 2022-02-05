@@ -6,7 +6,6 @@ Check promise and response in the console:
 ```javascript
 async componentDidMount() {
   //pending > resolved (success) or rejected (failure)
-  pending > resolved (success) or rejected (failure)
   const promise = axios.get("https://jsonplaceholder.typicode.com/posts");
   console.log(promise); // see PromiseStatus and PromiseResult.data
   const response = await promise;
