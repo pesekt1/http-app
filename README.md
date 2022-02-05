@@ -2,6 +2,8 @@
 
 ## Axios - part 1:
 
+Connect to jsonplaceholder and get some data.
+
 Check promise and response in the console:
 ```javascript
 async componentDidMount() {
