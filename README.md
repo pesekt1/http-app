@@ -48,7 +48,7 @@ Axios interceptors: global http error handling
 
 https://axios-http.com/docs/interceptors
 
-If there is an unexpected error (outside 400 range) we log it and send alert to the user. This is done before the try-catch block.
+If there is an unexpected error (outside 400 range) we log it and send alert to the user. This is done before the catch block.
 
 ```javascript
 // Add a response interceptor
